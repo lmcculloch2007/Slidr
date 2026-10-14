@@ -1,4 +1,4 @@
-//import module
+
 const express = require('express');
 const app = express();
 const PORT = 3000;
@@ -11,4 +11,3 @@ app.listen(PORT, () => {
     console.log(`The server is now listening on port http://localhost:${PORT}`);
 });
 export {};
-//# sourceMappingURL=server.js.map
