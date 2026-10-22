@@ -4,7 +4,7 @@ import type { Request, Response } from 'express';
 const app = express();
 const PORT: number = 3000;
 
-// Handles GET requests
+
 app.get('/', (_req: Request, res: Response) => {
     res.send('Basic Get Route is working!!');
 });
