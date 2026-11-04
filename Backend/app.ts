@@ -1,7 +1,16 @@
-import express from "express";
+import express, {type NextFunction} from "express";
 import type { Request, Response } from 'express';
+import cors from 'cors';
+
+
 
 const app = express();
+
+//change for the frontend
+app.use(cors({
+    origin: 'http://localhost:8080',
+}));
+
 
 //allows JSON handling
 app.use(express.json())
@@ -50,6 +59,26 @@ app.post('/', (_req: Request, res: Response) => {
     })
 });
 
+//app.ts and pythonserver communication
+
+app.post('/api/analyze', async(_req: Request, res: Response) =>{
+
+    try{
+        const response = await fetch('http://localhost:5000/analyze', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(_req.body)
+        });
+
+        const data = await response.json();
+        res.status(response.status).json(data);
+    }catch(error){
+        res.status(502).json({
+            error: " Python server is not responding"
+        });
+    }
+});
+
 //handles the PUT route
 app.put('/', (_req: Request, res: Response) => {
     const message = _req.body?.message;
@@ -84,10 +113,16 @@ app.delete('/api/test/:id', (_req: Request, res: Response) => {
 });
 
 //use route
-app.use((_req: Request, res: Response) => {
-    res.status(404).json({
-        error: "The Route was not Found",
-    })
-})
+app.use((
+    err: Error,
+    _req: Request,
+    res: Response,
+    next: NextFunction
+)=>{
+    console.error("Server error:", err.message);
 
+    res.status(500).json({
+        error: "Internal server Error"
+    });
+});
 export default app;
