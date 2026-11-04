@@ -27,15 +27,38 @@ app.post('/', (_req: Request, res: Response) => {
 
 //handles the PUT route
 app.put('/', (_req: Request, res: Response) => {
-    res.send("Basic PUT Route is working!!");
+    const message = _req.body?.message;
+
+    if(typeof message !== 'string') {
+         res.status(400).json({
+            error:"Message must be a string"
+        });
+        return;
+    }
+    res.status(200).json({
+        result: message,
+    });
 });
 
 
 //handles the delete route
-app.delete('/', (_req: Request, res: Response) => {
-    res.send("Basic DELETE Route is working!!");
+app.delete('/api/test/:id', (_req: Request, res: Response) => {
+    const id = Number(_req.params.id);
+
+    if (!Number.isInteger(id) || id <= 0) {
+        res.status(400).json({
+            error: "Invalid ID"
+        });
+        return;
+    }
+
+    res.status(200).json({
+        message: "Delete Route is working!",
+        id: id
+    });
 });
 
+//use route
 app.use((_req: Request, res: Response) => {
     res.status(404).json({
         error: "The Route was not Found",
