@@ -10,6 +10,31 @@ app.get('/', (_req: Request, res: Response) => {
     res.send('Basic Get Route is working!!');
 });
 
+//search get route
+app.get('/search', (req: Request, res: Response) => {
+    const product = req.query.product;
+
+    if(typeof product !== 'string' || product.trim() === '') {
+        res.status(400).json({
+            error: "A valid product name is required",
+        });
+        return;
+    }
+
+    res.status(200).json({
+        message:"Search request has been received",
+        searchTeam: product.trim()
+    });
+});
+
+//health get route
+app.get('/health', (req: Request, res: Response) => {
+    res.status(200).json({
+        status: "OK",
+        message: "Slidr backend is currently running"
+    });
+});
+
 //handles the POST requests
 app.post('/', (_req: Request, res: Response) => {
     const message = _req.body?.message;
