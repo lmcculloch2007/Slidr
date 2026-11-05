@@ -1,9 +1,7 @@
 node_modules/
-.idea/
-*.iml
-*.ts.map
-*.js.map
-__pycache__/
+dist/
 .env
 .venv/
-dist/
+.idea/
+__pycache__/
+*.pyc
