@@ -1,7 +1,7 @@
 import express, {type NextFunction} from "express";
 import type { Request, Response } from 'express';
 import cors from 'cors';
-
+import {getAllProducts} from "./services/productServices.js";
 
 
 const app = express();
@@ -34,6 +34,12 @@ app.get('/search', (req: Request, res: Response) => {
         message:"Search request has been received",
         searchTeam: product.trim()
     });
+});
+
+app.get('/api/products', (req: Request, res: Response) => {
+    const products = getAllProducts();
+
+    res.status(200).json(products);
 });
 
 //health get route
