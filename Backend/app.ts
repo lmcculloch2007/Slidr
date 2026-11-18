@@ -1,25 +1,32 @@
 import express, {type NextFunction} from "express";
+
 import type { Request, Response } from 'express';
+
 import cors from 'cors';
+
 import {getAllProducts} from "./services/productServices.js";
 
 
 const app = express();
 
 //change for the frontend
+
 app.use(cors({
     origin: 'http://localhost:8080',
 }));
 
-
 //allows JSON handling
+
 app.use(express.json())
 
 app.get('/', (_req: Request, res: Response) => {
+
     res.send('Basic Get Route is working!!');
+    
 });
 
 //search get route
+
 app.get('/search', (req: Request, res: Response) => {
     const product = req.query.product;
 
@@ -31,18 +38,22 @@ app.get('/search', (req: Request, res: Response) => {
     }
 
     res.status(200).json({
+
         message:"Search request has been received",
+
         searchTeam: product.trim()
     });
 });
 
 app.get('/api/products', (req: Request, res: Response) => {
+
     const products = getAllProducts();
 
     res.status(200).json(products);
 });
 
 //health get route
+
 app.get('/health', (req: Request, res: Response) => {
     res.status(200).json({
         status: "OK",
@@ -51,6 +62,7 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 //handles the POST requests
+
 app.post('/', (_req: Request, res: Response) => {
     const message = _req.body?.message;
 
@@ -65,7 +77,7 @@ app.post('/', (_req: Request, res: Response) => {
     })
 });
 
-//app.ts and pythonserver communication
+//app.ts and python server communication
 
 app.post('/api/analyze', async(_req: Request, res: Response) =>{
 
