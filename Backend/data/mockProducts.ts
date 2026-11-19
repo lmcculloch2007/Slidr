@@ -1,4 +1,3 @@
-
 import type { Product } from '../model/product.js';
 
 export const products: Product[] = [
@@ -7,6 +6,7 @@ export const products: Product[] = [
         name: 'Doll',
         brand: 'Doll Maker',
         category: 'toys',
+        subcategory: 'dolls',
         price: 20,
         rating: 5.0,
         reviewCount: 120,
@@ -21,6 +21,7 @@ export const products: Product[] = [
         name: 'Toy Car',
         brand: 'Hot Wheels',
         category: 'toys',
+        subcategory: 'cars',
         price: 15,
         rating: 4.5,
         reviewCount: 200,
@@ -35,6 +36,7 @@ export const products: Product[] = [
         name: 'Teddy Bear',
         brand: 'Toy Company',
         category: 'toys',
+        subcategory: 'plush',
         price: 30,
         rating: 4.8,
         reviewCount: 350,
@@ -49,6 +51,7 @@ export const products: Product[] = [
         name: 'Wireless Headphones',
         brand: 'SoundMax',
         category: 'electronics',
+        subcategory: 'headphones',
         price: 80,
         rating: 4.6,
         reviewCount: 450,
@@ -63,6 +66,7 @@ export const products: Product[] = [
         name: 'Bluetooth Speaker',
         brand: 'AudioPro',
         category: 'electronics',
+        subcategory: 'speakers',
         price: 55,
         rating: 4.3,
         reviewCount: 300,
@@ -77,6 +81,7 @@ export const products: Product[] = [
         name: 'Gaming Mouse',
         brand: 'TechGear',
         category: 'electronics',
+        subcategory: 'mice',
         price: 40,
         rating: 4.9,
         reviewCount: 600,
@@ -84,6 +89,37 @@ export const products: Product[] = [
             'Very responsive',
             'Perfect for gaming',
             'Comfortable grip'
+        ]
+    },
+    // New products so each subcategory has something to compare against
+    {
+        id: 7,
+        name: 'Kids Headphones',
+        brand: 'SoundMax',
+        category: 'electronics',
+        subcategory: 'headphones',
+        price: 35,
+        rating: 4.4,
+        reviewCount: 280,
+        reviews: [
+            'Volume limiter is great',
+            'Sturdy enough for my son',
+            'Fits small heads well'
+        ]
+    },
+    {
+        id: 8,
+        name: 'Toy Truck',
+        brand: 'Hot Wheels',
+        category: 'toys',
+        subcategory: 'cars',
+        price: 15,
+        rating: 4.5,
+        reviewCount: 200,
+        reviews: [
+            'Looks just like the real thing',
+            'Kids play with it daily',
+            'Good value'
         ]
     }
 ];
