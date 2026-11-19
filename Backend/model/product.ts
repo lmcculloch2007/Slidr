@@ -9,4 +9,5 @@ export interface Product{
     imageUrl?: string;
     productUrl?: string;
     reviews: string[];
+    subcategory?: string;
 }
